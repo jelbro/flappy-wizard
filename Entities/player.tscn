@@ -26,8 +26,8 @@ var score = 0
 
 func _physics_process(delta):
 	velocity.y += gravity * delta
-	#%Label.text = \"Score: \" + str(score)
-
+	print(is_dead)
+	
 	if is_dead == false:
 		if Input.is_action_just_pressed(\"jump\"):
 			$AnimationPlayer.play(\"jump\")
@@ -43,12 +43,12 @@ func _on_hurt_box_body_entered(body: Node2D):
 	
 	$AnimationPlayer.play(\"death\")
 	$HitSound.play()
-	
-	
+	is_dead = true
 	if $AnimationPlayer.is_playing(): 
 		return  
+	
+	
 	dead.emit()
-	is_dead = true
 	$GameOverSound.play()
 	get_tree().paused = true
 	queue_free()
@@ -190,10 +190,11 @@ debug_color = Color(0.921569, 0.254902, 0.333333, 0.419608)
 
 [node name="HitSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("2_6aq3t")
+volume_db = -10.331
 
 [node name="FallSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("3_tarv1")
-volume_db = -28.05
+volume_db = -36.315
 
 [node name="FlapSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("2_puaej")
@@ -201,7 +202,7 @@ volume_db = -6.041
 
 [node name="GameOverSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("5_sk048")
-volume_db = -15.104
+volume_db = -25.435
 
 [connection signal="area_entered" from="HurtBox" to="." method="_on_hurt_box_area_entered"]
 [connection signal="body_entered" from="HurtBox" to="." method="_on_hurt_box_body_entered"]
