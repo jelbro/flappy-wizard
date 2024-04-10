@@ -2,6 +2,8 @@ extends Node
 
 @export var score_panel_scene: PackedScene
 
+@onready var v_box_container = $HighscorePanel/ScrollContainer/VBoxContainer
+
 var score = 0
 var player_name: String
 var player_high_score = 0
@@ -70,6 +72,12 @@ func _on_line_edit_text_submitted(input_name):
 
 
 func draw_highscores_to_ui(highscores):
-	for i in $VBoxContainer.get_child_count():
+	for i in v_box_container.get_child_count():
 		if get_child(i) != null:
-			$VBoxContainer.get_child(i).queue_free()
+			v_box_container.get_child(i).queue_free()
+	
+	for entry in highscores:
+		var score_panel = score_panel_scene.instantiate()
+		score_panel.get_child(0).text = entry
+		score_panel.get_child(1).text = str(highscores[entry]).pad_zeros(3)
+		v_box_container.add_child(score_panel)
