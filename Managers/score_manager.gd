@@ -27,7 +27,21 @@ func _on_player_score_point():
 func update_highscores(player_name):
 	var name = player_name
 	var score = player_high_score
+	
+	for entry in highscores:
+		print(entry)
+		print(score)
+		print(highscores[entry])
+		if str(entry) != name:
+			pass
+		else:
+			if score > highscores[entry]:
+				pass
+			else:
+				return
+	
 	highscores[name] = score
+	
 	while highscores.size() > 10:
 		var lowest_value: int = 100
 		for entry in highscores:

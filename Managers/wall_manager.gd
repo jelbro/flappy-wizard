@@ -9,6 +9,7 @@ extends Node
 
 var first_wall = true
 
+
 func _ready():
 	if first_wall == true:
 		timer.wait_time = 1.5
