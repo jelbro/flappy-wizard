@@ -305,6 +305,7 @@ vertical_alignment = 1
 
 [node name="HighscoreScreen" parent="." instance=ExtResource("15_4hkdc")]
 unique_name_in_owner = true
+visible = false
 
 [node name="ColorRect2" type="ColorRect" parent="HighscoreScreen"]
 anchors_preset = 15
@@ -362,9 +363,55 @@ layout_direction = 2
 layout_mode = 2
 size_flags_horizontal = 3
 
+[node name="PlayAgain2" type="Panel" parent="HighscoreScreen"]
+offset_left = 64.0
+offset_top = 276.0
+offset_right = 243.0
+offset_bottom = 347.0
+
+[node name="HighscorePlayButton" type="Button" parent="HighscoreScreen/PlayAgain2"]
+layout_mode = 0
+offset_right = 178.0
+offset_bottom = 71.0
+
+[node name="Label" type="Label" parent="HighscoreScreen/PlayAgain2"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "PLAY AGAIN"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Exit2" type="Panel" parent="HighscoreScreen"]
+offset_left = 380.0
+offset_top = 278.0
+offset_right = 559.0
+offset_bottom = 348.0
+
+[node name="HighscoreExitButton" type="Button" parent="HighscoreScreen/Exit2"]
+layout_mode = 0
+offset_right = 179.0
+offset_bottom = 69.0
+
+[node name="Label" type="Label" parent="HighscoreScreen/Exit2"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "EXIT"
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [connection signal="dead" from="Entities/Player" to="GameManager" method="_on_player_dead"]
 [connection signal="score_point" from="Entities/Player" to="ScoreManager" method="_on_player_score_point"]
 [connection signal="area_entered" from="GroundArea" to="GroundArea" method="_on_area_entered"]
 [connection signal="pressed" from="GameOver/ColorRect/Exit/ExitButton" to="GameManager" method="_on_exit_button_pressed"]
 [connection signal="pressed" from="GameOver/ColorRect/PlayAgain/PlayButton" to="GameManager" method="_on_play_button_pressed"]
 [connection signal="text_submitted" from="GameOver/ColorRect/Panel/LineEdit" to="ScoreManager" method="_on_line_edit_text_submitted"]
+[connection signal="pressed" from="HighscoreScreen/PlayAgain2/HighscorePlayButton" to="GameManager" method="_on_highscore_play_button_pressed"]
+[connection signal="pressed" from="HighscoreScreen/Exit2/HighscoreExitButton" to="GameManager" method="_on_highscore_exit_button_pressed"]

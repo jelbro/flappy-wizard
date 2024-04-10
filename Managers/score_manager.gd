@@ -16,7 +16,7 @@ var save_path = "user://scoresave.tres"
 
 func _ready():
 	load_game()
-	draw_highscores_to_ui(highscores)
+	
 
 
 func _on_player_score_point():
