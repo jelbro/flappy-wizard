@@ -305,6 +305,7 @@ vertical_alignment = 1
 
 [node name="HighscoreScreen" parent="." instance=ExtResource("15_4hkdc")]
 unique_name_in_owner = true
+visible = false
 
 [node name="ColorRect2" type="ColorRect" parent="HighscoreScreen"]
 anchors_preset = 15
@@ -325,42 +326,29 @@ grow_vertical = 2
 layout_mode = 1
 anchors_preset = 10
 anchor_right = 1.0
-offset_left = 1.0
-offset_top = 8.0
-offset_right = 1.0
-offset_bottom = 74.0
+offset_bottom = 66.0
 grow_horizontal = 2
 theme_override_font_sizes/font_size = 41
 text = "HIGH SCORES"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="MarginContainer" type="MarginContainer" parent="HighscoreScreen"]
-clip_contents = true
+[node name="ScrollContainer" type="ScrollContainer" parent="HighscoreScreen/HighscorePanel2"]
+layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 60.0
-offset_top = 79.0
-offset_right = -76.0
-offset_bottom = -92.0
+offset_left = 10.0
+offset_top = 66.0
+offset_right = -11.0
+offset_bottom = -11.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="ScrollContainer" type="ScrollContainer" parent="HighscoreScreen/MarginContainer"]
-process_mode = 3
-clip_children = 1
-clip_contents = false
-custom_minimum_size = Vector2(78, 78)
-layout_mode = 2
-
-[node name="VBoxContainer" type="VBoxContainer" parent="HighscoreScreen/MarginContainer/ScrollContainer" groups=["v_box_container"]]
+[node name="VBoxContainer" type="VBoxContainer" parent="HighscoreScreen/HighscorePanel2/ScrollContainer" groups=["v_box_container"]]
 unique_name_in_owner = true
-clip_contents = true
-custom_minimum_size = Vector2(78.965, 78)
-layout_direction = 2
 layout_mode = 2
-size_flags_horizontal = 3
+alignment = 1
 
 [connection signal="dead" from="Entities/Player" to="GameManager" method="_on_player_dead"]
 [connection signal="score_point" from="Entities/Player" to="ScoreManager" method="_on_player_score_point"]

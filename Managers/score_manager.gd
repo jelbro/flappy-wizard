@@ -2,7 +2,8 @@ extends Node
 
 @export var score_panel_scene: PackedScene
 
-@onready var v_box_container = $HighscorePanel/ScrollContainer/VBoxContainer
+@onready var high_score_screen = %HighscoreScreen
+@onready var v_box_container = %VBoxContainer
 
 var score = 0
 var player_name: String
@@ -15,6 +16,7 @@ var save_path = "user://scoresave.tres"
 
 func _ready():
 	load_game()
+	draw_highscores_to_ui(highscores)
 
 
 func _on_player_score_point():
@@ -69,6 +71,8 @@ func _on_line_edit_text_submitted(input_name):
 	update_highscores(player_name)
 	highscores = order_highscores(highscores)
 	print(highscores)
+	draw_highscores_to_ui(highscores)
+	high_score_screen.visible = true
 
 
 func draw_highscores_to_ui(highscores):
