@@ -16,7 +16,6 @@ var save_path = "user://scoresave.tres"
 
 func _ready():
 	load_game()
-	
 
 
 func _on_player_score_point():
