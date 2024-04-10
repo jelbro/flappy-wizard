@@ -70,4 +70,6 @@ func _on_line_edit_text_submitted(input_name):
 
 
 func draw_highscores_to_ui(highscores):
-	pass
+	for i in $VBoxContainer.get_child_count():
+		if get_child(i) != null:
+			$VBoxContainer.get_child(i).queue_free()
