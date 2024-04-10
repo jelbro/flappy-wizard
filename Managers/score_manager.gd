@@ -27,31 +27,19 @@ func _on_player_score_point():
 func update_highscores(player_name):
 	var name = player_name
 	var score = player_high_score
-	
-	for entry in highscores:
-		print(entry)
-		print(score)
-		print(highscores[entry])
-		if str(entry) != name:
-			pass
-		else:
-			if score > highscores[entry]:
-				pass
-			else:
-				return
-	
-	highscores[name] = score
-	
-	while highscores.size() > 10:
-		var lowest_value: int = 100
-		for entry in highscores:
-			if highscores[entry] < lowest_value:
-				lowest_value = highscores[entry]
+	if check_duplicate_name(name, score) == false:
+		highscores[name] = score
+		
+		while highscores.size() > 10:
+			var lowest_value: int = 100
+			for entry in highscores:
+				if highscores[entry] < lowest_value:
+					lowest_value = highscores[entry]
 
-		for logged in highscores:
-			if highscores[logged] == lowest_value:
-				highscores.erase(logged)
-	save_game()
+			for logged in highscores:
+				if highscores[logged] == lowest_value:
+					highscores.erase(logged)
+		save_game()
 
 
 func order_highscores(highscores: Dictionary) -> Dictionary:
@@ -99,3 +87,15 @@ func draw_highscores_to_ui(highscores):
 		score_panel.get_child(0).text = entry
 		score_panel.get_child(1).text = str(highscores[entry]).pad_zeros(3)
 		v_box_container.add_child(score_panel)
+		
+		
+func check_duplicate_name(name, score) -> bool:
+	for entry in highscores:
+		if str(entry) != name:
+			pass
+		else:
+			if score > highscores[entry]:
+				pass
+			else:
+				return true
+	return false
