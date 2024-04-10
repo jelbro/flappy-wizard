@@ -1,5 +1,7 @@
 extends Node
 
+@export var score_panel_scene: PackedScene
+
 var score = 0
 var player_name: String
 var player_high_score = 0
