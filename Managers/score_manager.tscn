@@ -1,6 +1,8 @@
-[gd_scene load_steps=2 format=3 uid="uid://bt2kq5wy0fc18"]
+[gd_scene load_steps=3 format=3 uid="uid://bt2kq5wy0fc18"]
 
 [ext_resource type="Script" path="res://Managers/score_manager.gd" id="1_7envm"]
+[ext_resource type="PackedScene" uid="uid://d2s4vxkydrxtw" path="res://Scenes/score_panel.tscn" id="2_nsmek"]
 
 [node name="ScoreManager" type="Node"]
 script = ExtResource("1_7envm")
+score_panel_scene = ExtResource("2_nsmek")
