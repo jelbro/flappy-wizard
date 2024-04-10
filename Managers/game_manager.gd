@@ -1,6 +1,7 @@
 extends Node
 
 @onready var game_over = %GameOver
+@onready var highscore_screen = %HighscoreScreen
 
 
 func _on_player_dead():
@@ -12,7 +13,7 @@ func _on_play_button_pressed():
 	get_tree().reload_current_scene()
 
 
-func _on_highscore_play_button_pressed():
+func _on_highscore_play_again_button_pressed():
 	get_tree().paused = false
 	get_tree().reload_current_scene()
 
