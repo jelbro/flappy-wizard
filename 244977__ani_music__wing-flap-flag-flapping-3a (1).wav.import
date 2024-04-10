@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://y6mk86t1ujgj"
+path="res://.godot/imported/244977__ani_music__wing-flap-flag-flapping-3a (1).wav-fcbb319d05dd0c22a1b5347e05620015.sample"
+
+[deps]
+
+source_file="res://244977__ani_music__wing-flap-flag-flapping-3a (1).wav"
+dest_files=["res://.godot/imported/244977__ani_music__wing-flap-flag-flapping-3a (1).wav-fcbb319d05dd0c22a1b5347e05620015.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

@@ -1,0 +1,48 @@
+[gd_scene load_steps=6 format=3 uid="uid://bseqy40ouvlcd"]
+
+[ext_resource type="Script" path="res://Entities/wall.gd" id="1_u5p6w"]
+[ext_resource type="Texture2D" uid="uid://dj64xpaeqj726" path="res://tile_0040.png" id="2_xixds"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_snc6l"]
+size = Vector2(16, 10.4157)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_umqiv"]
+size = Vector2(16, 26.9932)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jyldr"]
+size = Vector2(4, 14)
+
+[node name="wall" type="StaticBody2D" groups=["wall"]]
+collision_layer = 2
+collision_mask = 5
+script = ExtResource("1_u5p6w")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(25, 96.5)
+scale = Vector2(3.125, 12.0625)
+texture = ExtResource("2_xixds")
+
+[node name="Sprite2D2" type="Sprite2D" parent="."]
+position = Vector2(25, 319.25)
+scale = Vector2(3.125, 5.15627)
+texture = ExtResource("2_xixds")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
+position = Vector2(25, 319.5)
+scale = Vector2(3.125, 7.96875)
+shape = SubResource("RectangleShape2D_snc6l")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(25, 68.9999)
+scale = Vector2(3.125, 9.1875)
+shape = SubResource("RectangleShape2D_umqiv")
+
+[node name="WallDespawnArea" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WallDespawnArea"]
+position = Vector2(53, 7)
+shape = SubResource("RectangleShape2D_jyldr")
+
+[connection signal="area_entered" from="WallDespawnArea" to="." method="_on_wall_despawn_area_area_entered"]

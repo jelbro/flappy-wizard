@@ -1,0 +1,26 @@
+[gd_scene load_steps=3 format=3 uid="uid://vq503kx0dtjt"]
+
+[sub_resource type="GDScript" id="GDScript_s157f"]
+script/source = "extends Area2D
+
+const SPEED = -135
+
+
+func _physics_process(delta):
+	move_local_x(delta * SPEED)
+
+
+func _on_wall_despawn_area_area_entered(area):
+	queue_free()
+"
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pyue7"]
+size = Vector2(28, 484)
+
+[node name="ScoreArea" type="Area2D" groups=["score_area"]]
+collision_layer = 10
+script = SubResource("GDScript_s157f")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(14, 43)
+shape = SubResource("RectangleShape2D_pyue7")
