@@ -67,3 +67,7 @@ func _on_line_edit_text_submitted(input_name):
 	update_highscores(player_name)
 	highscores = order_highscores(highscores)
 	print(highscores)
+
+
+func draw_highscores_to_ui(highscores):
+	pass
