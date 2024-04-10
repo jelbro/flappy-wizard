@@ -12,12 +12,14 @@ var player_high_score = 0
 var highscores: Dictionary
 var gameSave = SaveGame.new()
 var save_path = "user://scoresave.tres"
+var highscore = 0
 
 
 func _ready():
 	load_game()
 	order_highscores(highscores)
-	%HighscoreLabel.text = "High Score: " + str(find_highest_score(highscores))
+	highscore = find_highest_score(highscores)
+	%HighscoreLabel.text = "High Score: " + str(highscore)
 
 
 func _on_player_score_point():
@@ -57,8 +59,11 @@ func order_highscores(highscores: Dictionary) -> Dictionary:
 
 
 func find_highest_score(highscores: Dictionary):
+	var highest_score: int = 0
+	if highscores.is_empty() == true:
+		highest_score = 0
+		return highest_score
 	for i in highscores:
-		var highest_score: int = 0
 		for entry in highscores:
 			if highscores[entry] > highest_score:
 				highest_score = highscores[entry]
