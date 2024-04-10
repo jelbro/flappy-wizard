@@ -16,6 +16,8 @@ var save_path = "user://scoresave.tres"
 
 func _ready():
 	load_game()
+	order_highscores(highscores)
+	%HighscoreLabel.text = "High Score: " + str(find_highest_score(highscores))
 
 
 func _on_player_score_point():
@@ -52,6 +54,15 @@ func order_highscores(highscores: Dictionary) -> Dictionary:
 		ordered_dict[original_dict.find_key(highest_score)] = highest_score
 		original_dict.erase(original_dict.find_key(highest_score))
 	return ordered_dict
+
+
+func find_highest_score(highscores: Dictionary):
+	for i in highscores:
+		var highest_score: int = 0
+		for entry in highscores:
+			if highscores[entry] > highest_score:
+				highest_score = highscores[entry]
+		return highest_score
 
 
 func save_game():
