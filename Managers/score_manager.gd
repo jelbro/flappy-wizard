@@ -102,8 +102,8 @@ func draw_highscores_to_ui(highscores):
 		score_panel.get_child(0).text = entry
 		score_panel.get_child(1).text = str(highscores[entry]).pad_zeros(3)
 		v_box_container.add_child(score_panel)
-		
-		
+
+
 func check_duplicate_name(name, score) -> bool:
 	for entry in highscores:
 		if str(entry) != name:
