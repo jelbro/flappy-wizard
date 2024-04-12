@@ -1,0 +1,12 @@
+[gd_resource type="LabelSettings" load_steps=2 format=3 uid="uid://bbmf07po8xv0v"]
+
+[ext_resource type="FontFile" uid="uid://be118gy30lsrs" path="res://GothicPixels.ttf" id="1_ryfba"]
+
+[resource]
+font = ExtResource("1_ryfba")
+font_size = 80
+outline_size = 11
+outline_color = Color(0.537255, 0.580392, 0.662745, 1)
+shadow_size = 16
+shadow_color = Color(0, 0, 0, 0.721569)
+shadow_offset = Vector2(1.96, 3.435)
