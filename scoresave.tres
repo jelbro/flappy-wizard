@@ -5,4 +5,5 @@
 [resource]
 script = ExtResource("1_vk71a")
 highscores = {
+"dfhdr": 2
 }
