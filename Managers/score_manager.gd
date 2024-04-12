@@ -11,8 +11,7 @@ var player_high_score = 0
 
 var highscores: Dictionary
 var gameSave = SaveGame.new()
-var save_path = "res://scoresave.tres"
-var highscore = 0
+var save_path = "user://scoresave.tres"
 
 
 func _ready():
@@ -71,14 +70,13 @@ func load_game():
 func _on_line_edit_text_submitted(input_name):
 	player_name = input_name
 	player_high_score = score
+	load_game()
 	update_highscores(player_name)
 	highscores = order_highscores(highscores)
 	print(highscores)
 	draw_highscores_to_ui(highscores)
 	high_score_screen.visible = true
-	save_game()
-	highscore = find_highest_score(highscores)
-	print("in on line edit" + str(highscore))
+	
 
 
 func draw_highscores_to_ui(highscores):
@@ -103,9 +101,3 @@ func check_duplicate_name(name, score) -> bool:
 			else:
 				return true
 	return false
-
-
-func _on_play_button_pressed():
-	load_game()
-	find_highest_score(highscores)
-	%HighscoreLabel.text = "High Score: " + str(highscore)
