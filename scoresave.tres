@@ -5,6 +5,4 @@
 [resource]
 script = ExtResource("1_vk71a")
 highscores = {
-"jimbo": 1,
-"josh": 21
 }
