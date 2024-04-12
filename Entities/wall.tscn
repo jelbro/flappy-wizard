@@ -1,13 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://irau73xk8dbf"]
+[gd_scene load_steps=5 format=3 uid="uid://irau73xk8dbf"]
 
 [ext_resource type="Script" path="res://Entities/wall.gd" id="1_k8bax"]
 [ext_resource type="Texture2D" uid="uid://dj64xpaeqj726" path="res://tile_0040.png" id="1_vocq7"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_snc6l"]
-size = Vector2(16, 16.0627)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_umqiv"]
-size = Vector2(16, 21.9864)
+[ext_resource type="Texture2D" uid="uid://b01xyxahclppb" path="res://ParallaxBackground/Single Middle Rock.png" id="3_44n4a"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jyldr"]
 size = Vector2(4, 14)
@@ -18,24 +13,16 @@ collision_mask = 5
 script = ExtResource("1_k8bax")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+visible = false
 position = Vector2(25, 73.5)
 scale = Vector2(3.125, 9.1875)
 texture = ExtResource("1_vocq7")
 
 [node name="Sprite2D2" type="Sprite2D" parent="."]
+visible = false
 position = Vector2(25, 296.75)
 scale = Vector2(3.125, 7.96875)
 texture = ExtResource("1_vocq7")
-
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
-position = Vector2(25, 297)
-scale = Vector2(3.125, 7.96875)
-shape = SubResource("RectangleShape2D_snc6l")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(25, 46)
-scale = Vector2(3.125, 9.1875)
-shape = SubResource("RectangleShape2D_umqiv")
 
 [node name="WallDespawnArea" type="Area2D" parent="."]
 collision_layer = 2
@@ -44,5 +31,20 @@ collision_mask = 4
 [node name="CollisionShape2D" type="CollisionShape2D" parent="WallDespawnArea"]
 position = Vector2(53, 7)
 shape = SubResource("RectangleShape2D_jyldr")
+
+[node name="Sprite2D3" type="Sprite2D" parent="."]
+position = Vector2(30, 180)
+scale = Vector2(2.17308, 2.22222)
+texture = ExtResource("3_44n4a")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+position = Vector2(30, 180)
+scale = Vector2(2.17308, 2.22222)
+polygon = PackedVector2Array(-2.30089, 19.35, -7.82301, 22.05, -11.0442, 28.35, -13.3451, 36, -13.3451, 50.85, -12.885, 65.25, -11.9646, 71.55, -10.5841, 77.4, -11.9646, 81, 10.5841, 81, 10.5841, 73.35, 11.5044, 69.3, 11.5044, 65.7, 11.0442, 54, 13.8053, 47.7, 11.5044, 46.35, 11.5044, 38.7, 13.8053, 36.9, 13.3451, 33.3, 10.1239, 35.1, 10.1239, 24.3, 8.28319, 21.15, 3.68142, 20.7)
+
+[node name="CollisionShape2D" type="CollisionPolygon2D" parent="."]
+position = Vector2(25, 46)
+scale = Vector2(3.125, 9.1875)
+polygon = PackedVector2Array(-3.52, 10.7755, 1.6, 10.9932, 5.76, 10.6667, 8.32, 10.9932, 9.28, 8.38095, 8.64, 3.04762, 8.32, 1.95918, 9.92, 0.217687, 8.96, -1.85034, 9.6, -5.22449, 10.56, -10.0136, -10.56, -10.1224, -8, -4.89796, -7.36, -1.63265, -8, 1.08844, -5.76, 1.7415, -5.76, 3.48299, -5.76, 5.55102, -5.12, 7.40136, -4.16, 9.2517)
 
 [connection signal="area_entered" from="WallDespawnArea" to="." method="_on_wall_despawn_area_area_entered"]

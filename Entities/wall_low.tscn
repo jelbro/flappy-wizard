@@ -1,13 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://bseqy40ouvlcd"]
+[gd_scene load_steps=5 format=3 uid="uid://bseqy40ouvlcd"]
 
 [ext_resource type="Script" path="res://Entities/wall.gd" id="1_u5p6w"]
 [ext_resource type="Texture2D" uid="uid://dj64xpaeqj726" path="res://tile_0040.png" id="2_xixds"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_snc6l"]
-size = Vector2(16, 10.4157)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_umqiv"]
-size = Vector2(16, 26.9932)
+[ext_resource type="Texture2D" uid="uid://c0u42rnwon44h" path="res://ParallaxBackground/Single Low Rock.png" id="3_pfiwv"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jyldr"]
 size = Vector2(4, 14)
@@ -18,24 +13,31 @@ collision_mask = 5
 script = ExtResource("1_u5p6w")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+visible = false
 position = Vector2(25, 96.5)
 scale = Vector2(3.125, 12.0625)
 texture = ExtResource("2_xixds")
 
 [node name="Sprite2D2" type="Sprite2D" parent="."]
+visible = false
 position = Vector2(25, 319.25)
 scale = Vector2(3.125, 5.15627)
 texture = ExtResource("2_xixds")
 
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
+[node name="Sprite2D3" type="Sprite2D" parent="."]
+position = Vector2(32, 169)
+scale = Vector2(1.65385, 2.37037)
+texture = ExtResource("3_pfiwv")
+
+[node name="CollisionShape2D2" type="CollisionPolygon2D" parent="."]
 position = Vector2(25, 319.5)
 scale = Vector2(3.125, 7.96875)
-shape = SubResource("RectangleShape2D_snc6l")
+polygon = PackedVector2Array(-2.24, -2.32157, -7.68, -1.69412, -8, 1.31765, -8, 4.32941, -7.68, 5.08235, -0.32, 5.08235, 5.76, 4.95686, 9.28, 2.69804, 9.6, 1.56863, 8, 0.564705, 7.68, -2.07059, 4.48, -2.07059, 1.92, -2.32157)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2D" type="CollisionPolygon2D" parent="."]
 position = Vector2(25, 68.9999)
 scale = Vector2(3.125, 9.1875)
-shape = SubResource("RectangleShape2D_umqiv")
+polygon = PackedVector2Array(-4.48, 5.98641, -4.16, 9.03402, -2.88, 11.4286, -3.2, 12.9524, -4.16, 15.1293, -0.64, 15.2381, 2.24, 14.8027, 5.44, 15.2381, 6.08, 13.4966, 6.4, 10.6667, 8.32, 8.70749, 8.64, 5.2245, 8, 3.70069, 8.32, 1.52382, 7.68, -2.17686, 8.32, -4.78911, 11.52, -9.14285, 10.88, -10.0136, -8.32, -9.90475, -7.68, -5.44217, -6.72, -2.82992, -5.44, -0.761894, -6.4, 0.653071, -6.08, 1.95919, -7.04, 3.15647, -5.76, 5.11566)
 
 [node name="WallDespawnArea" type="Area2D" parent="."]
 collision_layer = 2
