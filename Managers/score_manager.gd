@@ -21,6 +21,7 @@ func _ready():
 	%HighscoreLabel.text = "High Score: " + str(highscore)
 
 
+
 func _on_player_score_point():
 	score += 1
 	%ScoreLabel.text = "Score: " + str(score)
@@ -57,6 +58,7 @@ func order_highscores(highscores: Dictionary) -> Dictionary:
 	return ordered_dict
 
 
+
 func find_highest_score(highscores: Dictionary):
 	if highscores.is_empty() == true:
 		highscore = 0
@@ -65,6 +67,7 @@ func find_highest_score(highscores: Dictionary):
 			if highscores[entry] >= highscore:
 				print(highscore)
 				highscore = highscores[entry]
+
 
 
 func save_game():
