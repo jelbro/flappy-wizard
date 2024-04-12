@@ -1,4 +1,4 @@
-[gd_scene load_steps=41 format=3 uid="uid://b10ayfu54bqbj"]
+[gd_scene load_steps=47 format=3 uid="uid://b10ayfu54bqbj"]
 
 [ext_resource type="PackedScene" uid="uid://bw0wf8ucp6kh3" path="res://Managers/wall_manager.tscn" id="1_27033"]
 [ext_resource type="Texture2D" uid="uid://boo5r5vegl3pm" path="res://tilemap.png" id="1_gy85g"]
@@ -25,6 +25,7 @@
 [ext_resource type="FontFile" uid="uid://be118gy30lsrs" path="res://GothicPixels.ttf" id="22_7w78c"]
 [ext_resource type="LabelSettings" uid="uid://bbmf07po8xv0v" path="res://title_text_settings.tres" id="22_qvn5s"]
 [ext_resource type="LabelSettings" uid="uid://cb1whe4pamwto" path="res://text_settings.tres" id="23_18bik"]
+[ext_resource type="PackedScene" uid="uid://cbg30jtm2ty3c" path="res://Scenes/Start Screen.tscn" id="26_g5b7d"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_vqqpc"]
 resource_name = "Tiles"
@@ -205,6 +206,30 @@ shadow_size = 0
 shadow_color = Color(0, 0, 0, 0.721569)
 shadow_offset = Vector2(1.96, 3.435)
 
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_qsbqa"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_r3ip0"]
+font = ExtResource("22_7w78c")
+font_size = 175
+outline_size = 11
+outline_color = Color(0.537255, 0.580392, 0.662745, 1)
+shadow_size = 16
+shadow_color = Color(0, 0, 0, 0.721569)
+shadow_offset = Vector2(1.96, 3.435)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_hy0n7"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_l4npm"]
+font = ExtResource("22_7w78c")
+font_size = 80
+outline_size = 11
+outline_color = Color(0.537255, 0.580392, 0.662745, 1)
+shadow_size = 16
+shadow_color = Color(0, 0, 0, 0.721569)
+shadow_offset = Vector2(1.96, 3.435)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_bld58"]
+
 [node name="Main" type="Node"]
 
 [node name="WallManager" parent="." instance=ExtResource("1_27033")]
@@ -225,7 +250,8 @@ layer_0/tile_data = PackedInt32Array(-65536, 0, 4, 0, 0, 4, 65536, 0, 4, 131072,
 [node name="Entities" type="Node" parent="." groups=["entities"]]
 
 [node name="Player" parent="Entities" instance=ExtResource("2_b6u52")]
-position = Vector2(293, 127)
+process_mode = 1
+position = Vector2(319, 184)
 
 [node name="Wall" parent="Entities" instance=ExtResource("2_adbfm")]
 z_index = -1
@@ -444,6 +470,8 @@ caret_blink = true
 caret_force_displayed = true
 
 [node name="ScoreBoard" type="CanvasLayer" parent="."]
+unique_name_in_owner = true
+visible = false
 
 [node name="Container" type="HBoxContainer" parent="ScoreBoard"]
 anchors_preset = 10
@@ -623,6 +651,96 @@ label_settings = SubResource("LabelSettings_w6ur4")
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="CountDown" type="CanvasLayer" parent="HighscoreScreen"]
+unique_name_in_owner = true
+visible = false
+
+[node name="Panel" type="Panel" parent="HighscoreScreen/CountDown"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_qsbqa")
+
+[node name="TimerLabel" type="Label" parent="HighscoreScreen/CountDown/Panel"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -40.0
+offset_right = 20.0
+offset_bottom = 40.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "3"
+label_settings = SubResource("LabelSettings_r3ip0")
+
+[node name="CountDownTimer" type="Timer" parent="HighscoreScreen/CountDown"]
+unique_name_in_owner = true
+process_mode = 3
+wait_time = 0.7
+
+[node name="StartScreen" parent="HighscoreScreen" instance=ExtResource("26_g5b7d")]
+unique_name_in_owner = true
+
+[node name="MarginContainer2" type="MarginContainer" parent="HighscoreScreen/StartScreen"]
+offset_right = 640.0
+offset_bottom = 360.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HighscoreScreen/StartScreen/MarginContainer2"]
+layout_mode = 2
+alignment = 1
+
+[node name="Panel" type="Panel" parent="HighscoreScreen/StartScreen/MarginContainer2/VBoxContainer"]
+custom_minimum_size = Vector2(23.995, 120.71)
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_styles/panel = SubResource("StyleBoxEmpty_hy0n7")
+
+[node name="Label" type="Label" parent="HighscoreScreen/StartScreen/MarginContainer2/VBoxContainer/Panel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -297.5
+offset_top = -40.0
+offset_right = 297.5
+offset_bottom = 40.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Flappy Wizard"
+label_settings = SubResource("LabelSettings_l4npm")
+
+[node name="Panel2" type="Panel" parent="HighscoreScreen/StartScreen/MarginContainer2/VBoxContainer"]
+custom_minimum_size = Vector2(4.015, 118.89)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_bld58")
+
+[node name="Button" type="Button" parent="HighscoreScreen/StartScreen/MarginContainer2/VBoxContainer/Panel2"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -100.0
+offset_top = -35.0
+offset_right = 100.0
+offset_bottom = 35.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("22_7w78c")
+theme_override_font_sizes/font_size = 61
+text = "Start"
+
+[connection signal="timer" from="GameManager" to="Entities/Player" method="_on_game_manager_timer"]
 [connection signal="dead" from="Entities/Player" to="GameManager" method="_on_player_dead"]
 [connection signal="score_point" from="Entities/Player" to="ScoreManager" method="_on_player_score_point"]
 [connection signal="area_entered" from="GroundArea" to="GroundArea" method="_on_area_entered"]
@@ -632,3 +750,6 @@ vertical_alignment = 1
 [connection signal="text_submitted" from="GameOver/ColorRect/VBoxContainer/Panel/LineEdit" to="ScoreManager" method="_on_line_edit_text_submitted"]
 [connection signal="pressed" from="HighscoreScreen/VBoxContainer/HBoxContainer/Exit2/HighscoreExitButton" to="GameManager" method="_on_highscore_exit_button_pressed"]
 [connection signal="pressed" from="HighscoreScreen/VBoxContainer/HBoxContainer/Panel/HighscorePlayAgainButton" to="GameManager" method="_on_highscore_play_again_button_pressed"]
+[connection signal="timeout" from="HighscoreScreen/CountDown/CountDownTimer" to="GameManager" method="_on_count_down_timer_timeout"]
+[connection signal="pressed" from="HighscoreScreen/StartScreen/MarginContainer2/VBoxContainer/Panel2/Button" to="GameManager" method="_on_button_pressed"]
+[connection signal="pressed" from="HighscoreScreen/StartScreen/MarginContainer2/VBoxContainer/Panel2/Button" to="Entities/Player" method="_on_button_pressed"]

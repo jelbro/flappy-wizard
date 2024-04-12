@@ -14,6 +14,7 @@ signal score_point
 
 const JUMP_VELOCITY = -360.0
 
+@onready var game_manager = $\"../../GameManager\"
 @onready var roof_2d = %Roof2D
 @onready var score_area = %ScoreArea
 @onready var ground_area = %GroundArea
@@ -22,6 +23,10 @@ const JUMP_VELOCITY = -360.0
 var gravity = ProjectSettings.get_setting(\"physics/2d/default_gravity\")
 var is_dead = false
 var score = 0
+
+
+func _ready():
+	process_mode = Node.PROCESS_MODE_PAUSABLE
 
 
 func _physics_process(delta):
@@ -61,6 +66,9 @@ func _on_hurt_box_area_entered(area):
 		return
 	score_point.emit()
 
+
+func _on_game_manager_timer():
+	process_mode = Node.PROCESS_MODE_ALWAYS
 "
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_pyhfo"]
