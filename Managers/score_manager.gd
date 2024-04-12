@@ -11,9 +11,10 @@ var player_high_score = 0
 
 var highscores: Dictionary
 var gameSave = SaveGame.new()
-var save_path = "user://scoresave.tres"
+var save_path = "res://scoresave.tres"
 var highscore = 0
 
+#"user://scoresave.tres"
 
 func _ready():
 	load_game()
