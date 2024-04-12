@@ -286,17 +286,6 @@ alignment = 1
 [node name="ScoreBoard" type="CanvasLayer" parent="."]
 
 [node name="Panel" type="Panel" parent="ScoreBoard"]
-
-
-offset_left = 150.0
-offset_top = 11.0
-offset_right = 252.0
-
-offset_left = 271.0
-offset_top = 11.0
-offset_right = 373.0
-
-
 offset_left = 271.0
 offset_top = 11.0
 offset_right = 373.0
@@ -314,25 +303,6 @@ theme_override_font_sizes/font_size = 20
 text = "Score: 0"
 horizontal_alignment = 1
 vertical_alignment = 1
-
-
-
-[node name="Panel2" type="Panel" parent="ScoreBoard"]
-offset_left = 388.0
-offset_top = 12.0
-offset_right = 528.0
-offset_bottom = 52.0
-
-[node name="HighscoreLabel" type="Label" parent="ScoreBoard/Panel2"]
-unique_name_in_owner = true
-layout_mode = 0
-offset_right = 140.0
-offset_bottom = 40.0
-text = "NOT USED YET"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-
 
 [node name="HighscoreScreen" parent="." instance=ExtResource("15_4hkdc")]
 unique_name_in_owner = true
