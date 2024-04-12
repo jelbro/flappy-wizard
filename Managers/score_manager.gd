@@ -14,12 +14,10 @@ var gameSave = SaveGame.new()
 var save_path = "res://scoresave.tres"
 var highscore = 0
 
-#"user://scoresave.tres"
 
 func _ready():
 	load_game()
-	order_highscores(highscores)
-	highscore = find_highest_score(highscores)
+	find_highest_score(highscores)
 	%HighscoreLabel.text = "High Score: " + str(highscore)
 
 
@@ -43,7 +41,7 @@ func update_highscores(player_name):
 			for logged in highscores:
 				if highscores[logged] == lowest_value:
 					highscores.erase(logged)
-		save_game()
+	save_game()
 
 
 func order_highscores(highscores: Dictionary) -> Dictionary:
@@ -60,15 +58,13 @@ func order_highscores(highscores: Dictionary) -> Dictionary:
 
 
 func find_highest_score(highscores: Dictionary):
-	var highest_score: int = 0
 	if highscores.is_empty() == true:
-		highest_score = 0
-		return highest_score
+		highscore = 0
 	for i in highscores:
 		for entry in highscores:
-			if highscores[entry] > highest_score:
-				highest_score = highscores[entry]
-		return highest_score
+			if highscores[entry] >= highscore:
+				print(highscore)
+				highscore = highscores[entry]
 
 
 func save_game():
@@ -80,6 +76,7 @@ func load_game():
 		gameSave = ResourceLoader.load(save_path).duplicate(true)
 		highscores = gameSave.highscores
 	else:
+		save_game()
 		printerr('No save file found at path')
 
 
@@ -91,6 +88,9 @@ func _on_line_edit_text_submitted(input_name):
 	print(highscores)
 	draw_highscores_to_ui(highscores)
 	high_score_screen.visible = true
+	save_game()
+	highscore = find_highest_score(highscores)
+	print("in on line edit" + str(highscore))
 
 
 func draw_highscores_to_ui(highscores):
@@ -115,3 +115,9 @@ func check_duplicate_name(name, score) -> bool:
 			else:
 				return true
 	return false
+
+
+func _on_play_button_pressed():
+	load_game()
+	find_highest_score(highscores)
+	%HighscoreLabel.text = "High Score: " + str(highscore)

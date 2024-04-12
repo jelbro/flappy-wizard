@@ -315,7 +315,7 @@ unique_name_in_owner = true
 layout_mode = 0
 offset_right = 140.0
 offset_bottom = 40.0
-text = "High Score: 0"
+text = "NOT USED YET"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -426,6 +426,7 @@ vertical_alignment = 1
 [connection signal="area_entered" from="GroundArea" to="GroundArea" method="_on_area_entered"]
 [connection signal="pressed" from="GameOver/ColorRect/Exit/ExitButton" to="GameManager" method="_on_exit_button_pressed"]
 [connection signal="pressed" from="GameOver/ColorRect/PlayAgain/PlayButton" to="GameManager" method="_on_play_button_pressed"]
+[connection signal="pressed" from="GameOver/ColorRect/PlayAgain/PlayButton" to="ScoreManager" method="_on_play_button_pressed"]
 [connection signal="text_submitted" from="GameOver/ColorRect/Panel/LineEdit" to="ScoreManager" method="_on_line_edit_text_submitted"]
 [connection signal="pressed" from="HighscoreScreen/Exit2/HighscoreExitButton" to="GameManager" method="_on_highscore_exit_button_pressed"]
 [connection signal="pressed" from="HighscoreScreen/Panel/HighscorePlayAgainButton" to="GameManager" method="_on_highscore_play_again_button_pressed"]
