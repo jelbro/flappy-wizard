@@ -41,12 +41,12 @@ func _on_hurt_box_body_entered(body: Node2D):
 	
 	$AnimationPlayer.play(\"death\")
 	$HitSound.play()
-	is_dead = true
+	#is_dead = true
 	if $AnimationPlayer.is_playing(): 
 		return  
 	
 	
-	dead.emit()
+	#dead.emit()
 	$GameOverSound.play()
 	get_tree().paused = true
 	queue_free()
