@@ -42,6 +42,7 @@ func _on_button_pressed():
 
 func _on_count_down_timer_timeout():
 	%TimerLabel.text = (str(count_number - 1))
+	%CountDownSound.play()
 	count_number -= 1
 	if count_number == 0:
 		%CountDownTimer.stop()
