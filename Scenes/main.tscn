@@ -232,7 +232,7 @@ shadow_offset = Vector2(1.96, 3.435)
 
 [node name="Main" type="Node"]
 
-[node name="WallManager" parent="." instance=ExtResource("1_27033")]
+[node name="WallManager" parent="." groups=["wall_manager"] instance=ExtResource("1_27033")]
 score_area = ExtResource("10_qq6od")
 wall_scenes = Array[PackedScene]([ExtResource("2_adbfm"), ExtResource("4_q0q8c"), ExtResource("6_c3opf")])
 
@@ -252,10 +252,6 @@ layer_0/tile_data = PackedInt32Array(-65536, 0, 4, 0, 0, 4, 65536, 0, 4, 131072,
 [node name="Player" parent="Entities" instance=ExtResource("2_b6u52")]
 process_mode = 1
 position = Vector2(319, 184)
-
-[node name="Wall" parent="Entities" instance=ExtResource("2_adbfm")]
-z_index = -1
-position = Vector2(641, -1)
 
 [node name="WallDespawner" parent="." instance=ExtResource("4_dx44d")]
 
@@ -471,11 +467,13 @@ caret_force_displayed = true
 
 [node name="ScoreBoard" type="CanvasLayer" parent="."]
 unique_name_in_owner = true
-visible = false
 
 [node name="Container" type="HBoxContainer" parent="ScoreBoard"]
-anchors_preset = 10
-anchor_right = 1.0
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -252.0
+offset_right = 252.0
 offset_bottom = 52.0
 grow_horizontal = 2
 size_flags_horizontal = 3
@@ -489,9 +487,15 @@ theme_override_styles/panel = SubResource("StyleBoxEmpty_uew5s")
 [node name="HighscoreLabel" type="Label" parent="ScoreBoard/Container/Panel2"]
 unique_name_in_owner = true
 layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -68.5
+offset_top = -10.0
+offset_right = 68.5
+offset_bottom = 10.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_fonts/font = ExtResource("22_7w78c")
@@ -509,9 +513,15 @@ theme_override_styles/panel = SubResource("StyleBoxEmpty_r5a8w")
 [node name="ScoreLabel" type="Label" parent="ScoreBoard/Container/Panel"]
 unique_name_in_owner = true
 layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -42.0
+offset_top = -10.0
+offset_right = 42.0
+offset_bottom = 10.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_font_sizes/font_size = 20
@@ -742,6 +752,9 @@ text = "Start"
 
 [connection signal="timer" from="GameManager" to="Entities/Player" method="_on_game_manager_timer"]
 [connection signal="dead" from="Entities/Player" to="GameManager" method="_on_player_dead"]
+[connection signal="player_wall_stop" from="Entities/Player" to="WallManager" method="_on_player_player_wall_stop"]
+[connection signal="player_wall_stop" from="Entities/Player" to="Background/ParallaxBackground" method="_on_player_player_wall_stop"]
+[connection signal="player_wall_stop" from="Entities/Player" to="Foreground" method="_on_player_player_wall_stop"]
 [connection signal="score_point" from="Entities/Player" to="ScoreManager" method="_on_player_score_point"]
 [connection signal="area_entered" from="GroundArea" to="GroundArea" method="_on_area_entered"]
 [connection signal="pressed" from="GameOver/ColorRect/VBoxContainer/HBoxContainer/Exit/ExitButton" to="GameManager" method="_on_exit_button_pressed"]

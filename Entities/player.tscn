@@ -1,16 +1,18 @@
-[gd_scene load_steps=13 format=3 uid="uid://cinj7tasax4k1"]
+[gd_scene load_steps=14 format=3 uid="uid://cinj7tasax4k1"]
 
 [ext_resource type="Texture2D" uid="uid://b37jqh0kry3br" path="res://tile_0111.png" id="1_c2wsu"]
 [ext_resource type="AudioStream" uid="uid://dre6il30he1xc" path="res://211500__taira-komori__knocking_wall.mp3" id="2_6aq3t"]
 [ext_resource type="AudioStream" uid="uid://y6mk86t1ujgj" path="res://244977__ani_music__wing-flap-flag-flapping-3a (1).wav" id="2_puaej"]
 [ext_resource type="AudioStream" uid="uid://d3lro82g3x4w7" path="res://566204__colorscrimsontears__fall-rpg.wav" id="3_tarv1"]
 [ext_resource type="AudioStream" uid="uid://d0gotqgqyv4fg" path="res://533034__evretro__8-bit-game-over-soundtune.wav" id="5_sk048"]
+[ext_resource type="PackedScene" uid="uid://cpx5r834ot3nu" path="res://Particles/explosion.tscn" id="6_jatvq"]
 
 [sub_resource type="GDScript" id="GDScript_bnnk0"]
 script/source = "extends CharacterBody2D
 
 signal dead
 signal score_point
+signal player_wall_stop
 
 const JUMP_VELOCITY = -360.0
 
@@ -43,10 +45,14 @@ func _physics_process(delta):
 func _on_hurt_box_body_entered(body: Node2D):
 	if body == roof_2d:
 		return
-	
+	player_wall_stop.emit()
+	var explosion = get_tree().get_first_node_in_group(\"explosion\") as CPUParticles2D
+	explosion.global_position = global_position
+	explosion.emitting = true
 	$AnimationPlayer.play(\"death\")
 	$HitSound.play()
 	is_dead = true
+	velocity.x = -200
 	if $AnimationPlayer.is_playing(): 
 		return  
 	
@@ -118,7 +124,7 @@ tracks/0/keys = {
 }
 tracks/1/type = "value"
 tracks/1/imported = false
-tracks/1/enabled = true
+tracks/1/enabled = false
 tracks/1/path = NodePath(".:scale")
 tracks/1/interp = 2
 tracks/1/loop_wrap = true
@@ -210,6 +216,9 @@ volume_db = -6.041
 [node name="GameOverSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("5_sk048")
 volume_db = -25.435
+
+[node name="Explosion" parent="." instance=ExtResource("6_jatvq")]
+show_behind_parent = true
 
 [connection signal="area_entered" from="HurtBox" to="." method="_on_hurt_box_area_entered"]
 [connection signal="body_entered" from="HurtBox" to="." method="_on_hurt_box_body_entered"]
